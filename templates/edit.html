@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="content-box">
+    <h3 class="mb-4">修改学生成绩 ({{ grade.student_id }})</h3>
+    <form method="POST">
+        <div class="form-group">
+            <label>姓名</label>
+            <input type="text" class="form-control" name="name" value="{{ grade.name }}" required>
+        </div>
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label>语文</label>
+                <input type="number" step="0.1" class="form-control" name="chinese" value="{{ grade.chinese }}" required>
+            </div>
+            <div class="col-md-4 form-group">
+                <label>数学</label>
+                <input type="number" step="0.1" class="form-control" name="math" value="{{ grade.math }}" required>
+            </div>
+            <div class="col-md-4 form-group">
+                <label>英语</label>
+                <input type="number" step="0.1" class="form-control" name="english" value="{{ grade.english }}" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label>物理</label>
+                <input type="number" step="0.1" class="form-control" name="physics" value="{{ grade.physics }}" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <label>化学</label>
+                <input type="number" step="0.1" class="form-control" name="chemistry" value="{{ grade.chemistry }}" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success mt-3">保存修改</button>
+        <a href="{{ url_for('manage_grades') }}" class="btn btn-secondary mt-3 ml-2">返回</a>
+    </form>
+</div>
+{% endblock %}

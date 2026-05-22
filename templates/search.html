@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="content-box">
+    <h3 class="mb-4">查询学生成绩</h3>
+    <form method="POST" action="{{ url_for('search_grade') }}" class="form-inline mb-4">
+        <select class="form-control mr-2" name="search_type">
+            <option value="student_id">按学号查询</option>
+            <option value="name">按姓名查询</option>
+        </select>
+        <input type="text" class="form-control mr-2" name="keyword" placeholder="请输入查询关键词" required>
+        <button type="submit" class="btn btn-primary">查询</button>
+    </form>
+
+    {% if has_searched %}
+        {% if grades %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>语文</th>
+                        <th>数学</th>
+                        <th>英语</th>
+                        <th>物理</th>
+                        <th>化学</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for g in grades %}
+                    <tr>
+                        <td>{{ g.student_id }}</td>
+                        <td>{{ g.name }}</td>
+                        <td>{{ g.chinese }}</td>
+                        <td>{{ g.math }}</td>
+                        <td>{{ g.english }}</td>
+                        <td>{{ g.physics }}</td>
+                        <td>{{ g.chemistry }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-warning">未查询到相关信息</div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
